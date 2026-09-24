@@ -1,0 +1,11 @@
+entities:
+
+- name: repro.Stress
+  env:
+    VFS_FILESYSTEM_BACKEND: client:kl.VfsRamFs
+  connections:
+  - target: kl.VfsRamFs
+    id: kl.VfsRamFs
+@INIT_Stress_ENTITY_CONNECTIONS+@
+
+@INIT_EXTERNAL_ENTITIES@

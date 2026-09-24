@@ -1,0 +1,21 @@
+/* Allow everything: the reproducer is about VfsRamFs, not the policy. */
+
+use nk.base._
+
+use EDL Einit
+use EDL kl.core.Core
+use EDL repro.Stress
+
+use kl.core.DCM._
+use kl.EntropyEntity._
+use kl.VfsRamFs._
+
+execute: kl.core.Execute
+
+execute { grant () }
+
+request { grant () }
+
+response { grant () }
+
+error { grant () }
