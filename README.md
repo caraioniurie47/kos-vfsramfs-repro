@@ -5,6 +5,9 @@ On KasperskyOS Community Edition 1.4.0.102 (QEMU, aarch64), the SDK's prebuilt V
 files in `/tmp` at the same time. The kernel then terminates VfsRamFs, and its client loses its file system
 (`[VFS_CLIENT] Connection to vfs lost.`).
 
+Reported on the Kaspersky forum:
+[VfsRamFs crashes (NULL dereference in inode_destructor) under concurrent stat/readdir/unlink](https://forum.kaspersky.com/topic/vfsramfs-crashes-null-dereference-in-inode_destructor-under-concurrent-statreaddirunlink-kasperskyos-ce-140102-59792/).
+
 ## What it does
 
 One program, `repro.Stress`, whose file system is the SDK's `precompiled_vfs::VfsRamFs`; the security policy grants
