@@ -1,0 +1,17 @@
+# Started by ProductEinit from the product ROMFS: VfsRamFs with the SDK's default environment and arguments
+# (precompiled_vfsConfig.cmake), without the single-thread workaround.
+
+blob_container_romfs_prefix: "/romfs/product/"
+
+entities:
+
+- name: kl.VfsRamFs
+  path: VfsRamFs
+  wait_for: ready
+  env:
+    VFS_FILESYSTEM_BACKEND: server:kl.VfsRamFs
+  args:
+  - '-l'
+  - 'nodev /tmp ramfs 0'
+  - '-l'
+  - 'devfs /dev devfs 0'

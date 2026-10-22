@@ -1,4 +1,4 @@
-# VfsRamFs crash reproducer (KasperskyOS CE 1.4.0.102)
+# VfsRamFs crash reproducer (KasperskyOS CE 1.4.0.102; fixed in 2.0.0.179)
 
 On KasperskyOS Community Edition 1.4.0.102 (QEMU, aarch64), the SDK's prebuilt VfsRamFs takes an unhandled page fault
 (a NULL pointer dereference in `inode_destructor`) when several threads of one client create, stat, list and unlink
@@ -48,3 +48,15 @@ set_target_properties (precompiled_vfs::VfsRamFs PROPERTIES EXTRA_ENV "
 
 `EXTRA_ENV` replaces VfsRamFs's default environment, so the backend line is restated. With it, `THREADS=4` completed
 all 20 rounds in 2 of 2 runs under QEMU (SDK 1.4.0.102), with no fault; each run took about 50 minutes.
+
+## SDK 2.0.0.179: fixed
+
+SDK 2.0 builds no image around Einit alone, so [`sdk2/`](sdk2/) builds the same program as the KPA package `Stress` on
+the SDK's prebuilt MinimalKOS, with VfsRamFs in a product ROMFS and its default environment (no workaround):
+
+```
+$SDK/toolchain/bin/cmake -S sdk2 -B build -D CMAKE_TOOLCHAIN_FILE=$SDK/toolchain/share/toolchain-aarch64-kos.cmake -D THREADS=4
+$SDK/toolchain/bin/cmake --build build --target sim
+```
+
+With `THREADS=4`, all 20 rounds completed in 2 of 2 runs under QEMU (about 20 minutes each), with no fault.

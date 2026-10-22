@@ -1,0 +1,17 @@
+/* Allow everything: the reproducer is about VfsRamFs, not the policy. */
+
+use nk.base._
+use minimal_kos._
+
+use EDL ProductEinit
+use EDL repro.Stress
+
+use kl.VfsRamFs._
+
+execute { grant () }
+
+request { grant () }
+
+response { grant () }
+
+error { grant () }
